@@ -20,7 +20,7 @@ void heapify(int *array, int heap, int i, int size)
 	{
 		t = array[i], array[i] = array[large], array[large] = t;
 		print_array(array, size);
-		stupify(array, heap, large, size);
+		heapify(array, heap, large, size);
 	}
 }
 
