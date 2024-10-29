@@ -1,3 +1,0 @@
-O(n)      # Best case: already sorted
-O(n^2)    # Average case
-O(n^2)    # Worst case: reverse sorted
