@@ -44,6 +44,8 @@ void radix_sort(int *array, size_t size);
 void count_sort_LSD(int *array, size_t size, size_t lsd);
 void quick_sort_hoare(int *array, size_t size);
 void bitonic_sort(int *array, size_t size);
+void insertion_sort_list(listint_t **list);
+void print_list(const listint_t *list);
 
 #endif /** _SORT_H_ */
 
