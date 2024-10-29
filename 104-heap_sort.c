@@ -1,14 +1,14 @@
 #include "sort.h"
 
 /**
-* stupify - recurrssive heapfiy function
+* heapify - recurrssive heapfiy function
 * @array: Array to sort
 * @heap: size of heap data
 * @i: index
 * @size: size of array
 */
 
-void stupify(int *array, int heap, int i, int size)
+void heapify(int *array, int heap, int i, int size)
 {
 	int large = i, l = 2 * i + 1, r = 2 * i + 2, t;
 
