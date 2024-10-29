@@ -46,9 +46,10 @@ void split(int *array, int *buff, int min, int max, int size);
 void printcheck(int *array, int r1, int r2);
 void merge(int *array, int *buff, int minL, int maxL, int minR, int maxR);
 void copy(int *src, int *dst, int size);
-void bitonicsort(int arr[], int low, int nelemnt, int order, int size);
-void merge(int arr[], int low, int nelemnt, int order);
-void swap(int arr[], int item1, int item2, int order);
+void swapint(int *l, int *r);
+void b_merge(int *array, int low, int count, int dir, size_t size);
+void b_sort(int *array, int low, int count, int dir, size_t size);
+
 void hoare_qsort(int *array, int low, int high, size_t size);
 int partition(int *array, int low, int high, size_t size);
 void swap(int *a, int *b);
