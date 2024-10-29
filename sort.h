@@ -42,6 +42,11 @@ void switch_nodes(listint_t **list, listint_t **p);
 void merge_recursion(int *arr, int *array, size_t left, size_t right);
 void merge_subarr(int *subarr, int *buff, size_t front, size_t mid,
                 size_t back);
+void split(int *array, int *buff, int min, int max, int size);
+void printcheck(int *array, int r1, int r2);
+void merge(int *array, int *buff, int minL, int maxL, int minR, int maxR);
+void copy(int *src, int *dst, int size);
+
 void stupify(int *array, int heap, int i, int size);
 void count_sort_LSD(int *array, size_t size, size_t lsd);
 
