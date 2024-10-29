@@ -1,87 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "sort.h"
 
 /**
  * swap - Swaps two integers in an array.
- * @a: First integer to swap.
- * @b: Second integer to swap.
+ * @a: Pointer to the first integer.
+ * @b: Pointer to the second integer.
  */
 void swap(int *a, int *b)
 {
-	int tmp;
-
-	tmp = *a;
+	int temp = *a;
 	*a = *b;
-	*b = tmp;
+	*b = temp;
 }
 
 /**
- * sift_down - Fixes a heap by moving the root element down.
- * @array: Array to be sorted.
- * @start: Starting index of the heap.
- * @end: Ending index of the heap.
- * @size: Size of the array.
+ * heapify - Maintains the max-heap property for a subtree.
+ * @array: The array representing the heap.
+ * @size: The size of the heap.
+ * @i: The index of the root of the subtree.
  */
-void sift_down(int *array, size_t start, size_t end, size_t size)
+void heapify(int *array, size_t size, size_t i)
 {
-	size_t root = start;
-	size_t child, swap_idx;
+	size_t largest = i;
+	size_t left = 2 * i + 1;
+	size_t right = 2 * i + 2;
 
-	while ((root * 2 + 1) <= end)
+	if (left < size && array[left] > array[largest])
+		largest = left;
+
+	if (right < size && array[right] > array[largest])
+		largest = right;
+
+	if (largest != i)
 	{
-		child = root * 2 + 1;
-		swap_idx = root;
-
-		if (array[swap_idx] < array[child])
-			swap_idx = child;
-
-		if ((child + 1 <= end) && (array[swap_idx] < array[child + 1]))
-			swap_idx = child + 1;
-
-		if (swap_idx == root)
-			return;
-
-		swap(&array[root], &array[swap_idx]);
+		swap(&array[i], &array[largest]);
 		print_array(array, size);
-		root = swap_idx;
+		heapify(array, size, largest);
 	}
 }
 
 /**
- * heapify - Builds the heap from the array.
- * @array: Array to turn into a heap.
- * @size: Size of the array.
- */
-void heapify(int *array, size_t size)
-{
-	ssize_t start = (size - 2) / 2;
-
-	while (start >= 0)
-	{
-		sift_down(array, start, size - 1, size);
-		start--;
-	}
-}
-
-/**
- * heap_sort - Sorts an array of integers in ascending order using Heap sort.
- * @array: Array to be sorted.
- * @size: Size of the array.
+ * heap_sort - Sorts an array of integers in ascending order
+ *             using the Heap Sort algorithm.
+ * @array: The array to be sorted.
+ * @size: The size of the array.
  */
 void heap_sort(int *array, size_t size)
 {
-	size_t end;
+	int i;
 
-	if (array == NULL || size < 2)
+	if (size < 2)
 		return;
 
-	heapify(array, size);
-	end = size - 1;
-	while (end > 0)
+	for (i = size / 2 - 1; i >= 0; i--)
+		heapify(array, size, i);
+
+	for (i = size - 1; i > 0; i--)
 	{
-		swap(&array[end], &array[0]);
+		swap(&array[0], &array[i]);
 		print_array(array, size);
-		end--;
-		sift_down(array, 0, end, size);
+		heapify(array, i, 0);
 	}
 }
 
