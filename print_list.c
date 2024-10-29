@@ -6,19 +6,17 @@
  *
  * @list: The list to be printed
  */
-
 void print_list(const listint_t *list)
 {
-  int y;
+	int i = 0;
 
-  y = 0;
-  while (list)
-    {
-      if (y > 0)
-	printf(", ");
-      printf("%d", list->n);
-      ++y;
-      list = list->next;
-    }
-  printf("\n");
+	while (list)
+	{
+		if (i > 0)
+			printf(", ");
+		printf("%d", list->n);
+		i++;
+		list = list->next;
+	}
+	printf("\n");
 }
