@@ -1,61 +1,60 @@
 #include "sort.h"
+#include <stdlib.h>
 
 /**
- * counting_sort - Sort an array using the counting sort algorithm
+ * counting_sort - Sorts an array of integers in ascending order
+ * using the Counting sort algorithm
  * @array: The array to be sorted
  * @size: The size of the array
  */
 void counting_sort(int *array, size_t size)
 {
-	int max, i;
-	int *count, *output;
+	size_t i;
+	int max = 0, *count = NULL, *output = NULL;
 
-	if (size < 2)
+	if (array == NULL || size < 2)
 		return;
 
-	/* Find the maximum value in the array */
-	max = array[0];
-	for (i = 1; i < size; i++)
-	{
+	/* Find the maximum element in the array */
+	for (i = 0; i < size; i++)
 		if (array[i] > max)
 			max = array[i];
-	}
 
-	/* Allocate memory for count and output arrays */
+	/* Allocate memory for the count array and initialize to 0 */
 	count = malloc((max + 1) * sizeof(int));
-	output = malloc(size * sizeof(int));
-	if (count == NULL || output == NULL)
-	{
-		free(count);
-		free(output);
+	if (count == NULL)
 		return;
-	}
-
-	/* Initialize count array */
-	for (i = 0; i <= max; i++)
+	for (i = 0; i <= (size_t)max; i++)
 		count[i] = 0;
 
 	/* Store the count of each element */
 	for (i = 0; i < size; i++)
 		count[array[i]]++;
 
-	/* Change count[i] so that count[i] contains the
-	 * actual position of this element in output array */
-	for (i = 1; i <= max; i++)
+	/* Update the count array to contain positions */
+	for (i = 1; i <= (size_t)max; i++)
 		count[i] += count[i - 1];
 
+	print_array(count, max + 1);
+
 	/* Build the output array */
-	for (i = size - 1; i >= 0; i--)
+	output = malloc(size * sizeof(int));
+	if (output == NULL)
 	{
-		output[count[array[i]] - 1] = array[i];
-		count[array[i]]--;
+		free(count);
+		return;
 	}
 
-	/* Copy the output array to array */
+	for (i = size; i > 0; i--)
+	{
+		output[count[array[i - 1]] - 1] = array[i - 1];
+		count[array[i - 1]]--;
+	}
+
+	/* Copy the sorted elements back into the original array */
 	for (i = 0; i < size; i++)
 		array[i] = output[i];
 
-	/* Free allocated memory */
 	free(count);
 	free(output);
 }
