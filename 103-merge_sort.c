@@ -13,6 +13,7 @@ void merge_sort(int *array, size_t size);
  * @mid: The middle index of the array.
  * @back: The back index of the array.
  */
+
 void merge_subarr(int *subarr, int *buff, size_t front, size_t mid,
 		size_t back)
 {
@@ -25,7 +26,7 @@ void merge_subarr(int *subarr, int *buff, size_t front, size_t mid,
 	print_array(subarr + mid, back - mid);
 
 	for (x = front, y = mid; x < mid && y < back; z++)
-		buff[z] = (subarr[x] < subarr[y]) ? subarr[x++] : subarr[j++];
+		buff[z] = (subarr[x] < subarr[y]) ? subarr[x++] : subarr[y++];
 	for (; x < mid; x++)
 		buff[z++] = subarr[x];
 	for (; y < back; y++)
