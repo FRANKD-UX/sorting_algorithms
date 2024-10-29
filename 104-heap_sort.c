@@ -25,7 +25,7 @@ void stupify(int *array, int heap, int i, int size)
 }
 
 /**
-* heap_sort - Sorts array with heap sort algo
+* heap_sort - Sorts array with heap sort algorithm
 * @array: array to sort
 * @size: Size of array to sort
 */
