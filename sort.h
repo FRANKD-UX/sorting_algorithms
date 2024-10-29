@@ -41,7 +41,7 @@ int len_list(listint_t *h);
 void switch_nodes(listint_t **list, listint_t **p);
 void merge_recursion(int *arr, int *array, size_t left, size_t right);
 void merge_subarray(int *arr, int *array, size_t left, size_t middle, size_t right);
-void heapify(int *array, size_t s, size_t root, size_t size);
+void stupify(int *array, int heap, int i, int size);
 void count_sort_LSD(int *array, size_t size, size_t lsd);
 
 #endif /* SORT_H */
