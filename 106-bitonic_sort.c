@@ -2,21 +2,21 @@
 #include <stdio.h>
 
 /**
- * swap - swaps two integers in an array
+ * swap - swaps two integers in an array based on direction
  * @array: array of integers
  * @a: first integer index
  * @b: second integer index
+ * @dir: direction of sorting (1 for ascending, 0 for descending)
  */
-void swap(int *array, int a, int b)
+void swap(int *array, int a, int b, int dir)
 {
 	int temp;
 
-	if (array[a] > array[b])
+	if ((dir == 1 && array[a] > array[b]) || (dir == 0 && array[a] < array[b]))
 	{
 		temp = array[a];
 		array[a] = array[b];
 		array[b] = temp;
-
 		printf("Swap: %d <-> %d\n", array[a], array[b]);
 	}
 }
@@ -37,7 +37,7 @@ void bitonic_merge(int *array, int low, int cnt, int dir)
 		k = cnt / 2;
 		for (i = low; i < low + k; i++)
 		{
-			swap(array, i, i + k);
+			swap(array, i, i + k, dir);
 		}
 		bitonic_merge(array, low, k, dir);
 		bitonic_merge(array, low + k, k, dir);
