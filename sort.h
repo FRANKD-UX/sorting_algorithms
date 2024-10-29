@@ -40,7 +40,7 @@ void quick_sort_hoare(int *array, size_t size);
 int len_list(listint_t *h);
 void switch_nodes(listint_t **list, listint_t **p);
 void merge_recursion(int *arr, int *array, size_t left, size_t right);
-void merge_subarr(int *subarr, int *buff, size_t front, size_t m,
+void merge_subarr(int *subarr, int *buff, size_t front, size_t mid,
                 size_t back);
 void stupify(int *array, int heap, int i, int size);
 void count_sort_LSD(int *array, size_t size, size_t lsd);
